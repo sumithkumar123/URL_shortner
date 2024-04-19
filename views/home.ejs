@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+</head>
+<body>
+
+  <h1>URL Shortner</h1>
+  <p>To reach any website with shortId use this link format: </p>
+  <h5><u>http://localhost:8000/api/users/</u>SHORTID</h5>
+  <h3>Created By : <%= userEmail %></h3>
+  <h3>Role of User : <%= userRole %></h3>
+  <% if(locals.id) { %>
+    <h4>URL generated: <u>http://localhost:8000/api/users/<%= id %></u></h4>    
+    
+    <% } %>
+  <form method="POST" action="/api/users">
+    <label>Enter your Original URL:</label>
+    <input type="text" name="originalURL" placeholder="https://google.com"/>
+    <button type="submit">Generate</button>
+</form>
+<div>
+    <% if(locals.users) { %>
+    <table>
+        <thead>
+            <th>S.no</th>
+            <th>ShortId</th>
+            <th>Redirect</th>
+            <th>Clicks</th>
+        </thead>
+        <tbody>
+            <%  users.map((user,index) => { %>
+                <tr>
+                    <td><%= index+1 %></td>
+                    <td><%= user.shortId %></td>
+                    <td><%= user.originalURL %></td>
+                    <td><%= user.visits.length %></td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+ <% } %>
+</div>
+
+</body>
+</html>
+
