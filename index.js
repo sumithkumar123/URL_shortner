@@ -9,7 +9,6 @@ const cookieParser=require('cookie-parser');
 const {  checkForAuthentication, restrictTo } = require("./middlewares/auth");
 
 
-connecttodb("mongodb+srv://sumith95738:sumith123@backend.mcusq4r.mongodb.net/urlShortner");
 app.set("view engine","ejs");
 app.set('views',path.resolve("./views"));
 
